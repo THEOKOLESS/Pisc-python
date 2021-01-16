@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My awesome Form</title>
+        <style>
+
+
+            html, body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                color: #4a4a4a;
+                font-size: 1em;
+                font-weight: 400;
+                line-height: 1.5;
+            }
+            body {background-color: powderblue;}
+            .container {
+                    flex-grow: 1;
+                    margin: 0 auto;
+                    position: relative;
+                    width: auto;
+            }
+
+                    #phone::-webkit-inner-spin-button, 
+                    #phone::-webkit-outer-spin-button,
+                    #age::-webkit-inner-spin-button, 
+                    #age::-webkit-outer-spin-button  { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                    }
+          </style>
+        <meta charset="utf-8" />
+        <meta http-equiv="Cache-control" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+   </head>   
+    <body style=" margin: 0 auto; ">  
+        <div class="container">
+            <form>
+                <fieldset>
+            <div>
+                <label for="firstname" >Firstname :</label>
+                
+                    <input type="text"
+                        maxlength="25"
+                        name="firstname"
+                        id="firstname"
+                        placeholder="firstame"/>
+             
+        </div>
+
+        <div>
+            <label for="name" >Name :</label>
+          
+                <input type="text"
+                    maxlength="25"
+                    name="name"
+                    id="name"
+                    placeholder="name"/>
+           
+        </div>
+
+        <div>
+            <label for="age" >Age :</label>
+          
+                <input type="number"
+                    name="age"
+                    max="150"
+                    id="age"
+                    placeholder="age"/>
+         
+        </div>
+
+        <div>
+            <label for="phone">Phone :</label>
+           
+                <input type="tel"
+                    name="phone"
+                    maxlength="25"
+                    id="phone"
+                    placeholder="06 42 42 42 42"
+                    pattern="[0-9 ]{10,14}"/>
+            
+        </div>
+
+        <div>
+            <label for="Email" >Email :</label>
+           
+                <input type="email"
+                    maxlength="45"
+                    name="email"
+                    id="email"
+                    placeholder="name"/>
+           
+        </div>
+
+        <div>
+            <label for="student" >Student at 42 ?  :</label>
+            
+                <input type="checkbox"
+                    name="student"
+                    id="student"
+                    />
+          
+        </div>
+        
+        <div>
+            <input type="radio" id="gender_male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="gender_female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="gender_other" name="gender" value="other">
+            <label for="other">Other</label>
+            </div>
+            <input type="submit" name="submit" value="sweet form on his way" onclick="displayFormContents()">
+
+        </div>
+
+     
+       
+    </fieldset>
+            </form>
+        </div>
+    </body>
+    <script src="popup.js"></script>
+</html>
