@@ -1,1 +1,0 @@
-curl -s $1 | grep "<a href=\"http" | cut -d '"' -f 2
