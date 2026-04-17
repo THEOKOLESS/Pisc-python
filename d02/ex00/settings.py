@@ -1,0 +1,6 @@
+name = "duoquadragintian"
+first_name = "Théophile"
+last_name = "Vitoux"
+age = "22"
+profession = "Software Engineer Student"
+page_title = "CV - Théophile Vitoux"
