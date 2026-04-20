@@ -1,6 +1,6 @@
 name = "duoquadragintian"
 first_name = "Théophile"
 last_name = "Vitoux"
-age = "22"
+age = "32"
 profession = "Software Engineer Student"
 page_title = "CV - Théophile Vitoux"
