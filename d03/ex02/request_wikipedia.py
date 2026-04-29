@@ -56,7 +56,7 @@ def main():
     name = sanitize_filename(query)
     base_url = "https://fr.wikipedia.org/w/api.php"
     headers = {
-        "User-Agent": "request_wikipedia/1.0 (student script)",
+        "User-Agent": "request_wikipedia/1.0 (42 student script)",
         "Accept": "application/json",
     }
     try:
