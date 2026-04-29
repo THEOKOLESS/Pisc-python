@@ -1,33 +1,68 @@
 import sys
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 
 def get_page_title(soup):
     """Extract page title from Wikipedia page"""
     title_elem = soup.find('h1', class_='firstHeading')
     return title_elem.text if title_elem else "Unknown"
 
-def check_redirect(soup):
-    """Check if page is a redirect and return redirect URL if exists"""
-    redirect = soup.find('div', class_='mw-parser-output')
-    if redirect:
-        link = redirect.find('a')
-        if link and 'href' in link.attrs:
-            href = link.get('href')
-            if '/wiki/' in href and ':' not in href and not link.get('class') and 'Main_Page' not in href:
-                print(f"Redirected to {href}")
-                return "https://en.wikipedia.org" + href
-    return None
 
-
-def normalize_href(base_url, href):
+def normalize_href(href):
     if not href:
         return None
     if href.startswith('#'):
         return None
-    if href.startswith('/wiki/') or href.startswith('//') or href.startswith('http://') or href.startswith('https://'):
-        return urljoin(base_url, href)
+    if href.startswith('/wiki/'):
+        return "https://en.wikipedia.org" + href
+    if href.startswith('//en.wikipedia.org/wiki/'):
+        return "https:" + href
+    if href.startswith('https://en.wikipedia.org/wiki/'):
+        return href
+    if href.startswith('http://en.wikipedia.org/wiki/'):
+        return "https://" + href[len("http://"):]
+    return None
+
+
+def is_valid_article_href(href):
+    if not href:
+        return False
+    if href.startswith('/wiki/'):
+        path = href
+    elif href.startswith('//en.wikipedia.org/wiki/'):
+        path = href[len('//en.wikipedia.org'):]
+    elif href.startswith('https://en.wikipedia.org/wiki/'):
+        path = href[len('https://en.wikipedia.org'):]
+    elif href.startswith('http://en.wikipedia.org/wiki/'):
+        path = href[len('http://en.wikipedia.org'):]
+    else:
+        return False
+    if ':' in path:
+        return False
+    if path == '/wiki/Main_Page':
+        return False
+    return True
+
+
+def find_first_valid_link(main):
+    # Prefer direct intro paragraphs first.
+    direct_paragraphs = [child for child in main.find_all(recursive=False) if child.name == 'p']
+
+    for paragraph in direct_paragraphs:
+        for link in paragraph.find_all('a', href=True):
+            href = link.get('href', '')
+            if is_valid_article_href(href):
+                return link
+
+    # Fallback for pages where intro paragraphs are nested in extra wrappers.
+    for paragraph in main.find_all('p'):
+        if paragraph.find_parent('table'):
+            continue
+        for link in paragraph.find_all('a', href=True):
+            href = link.get('href', '')
+            if is_valid_article_href(href):
+                return link
+
     return None
 
 def main():
@@ -56,17 +91,13 @@ def main():
                 print(f"Error: Failed to fetch {url}: {e}")
                 sys.exit(1)
 
-            soup = BeautifulSoup(response.text, 'html.parser')
+            soup = BeautifulSoup(response.text, "lxml")
             title = get_page_title(soup)
             visited_pages.append(title)
 
-            # Check for redirect
-            # redirect_url = check_redirect(soup)
-            # if redirect_url and redirect_url != url:
-            #     url = redirect_url
-            #     continue
+       
 
-            if "Philosophy" in title or url == "https://en.wikipedia.org/wiki/Philosophy":
+            if title == "Philosophy" or url == "https://en.wikipedia.org/wiki/Philosophy":
                 for page_title in visited_pages:
                     print(page_title)
                 print(f"{len(visited_pages)} roads from {search} to philosophy")
@@ -78,26 +109,18 @@ def main():
                 print("It leads to a dead end !")
                 return
 
-            first_valid_link = None
-            for paragraph in content.find_all('p'):
-                all_links = paragraph.find_all('a', href=True)
-                for link in all_links:
-                    # Skip links in spans (citations)
-                    if link.find_parent('span') or link.find_parent('i') or link.find_parent('sup'):
-                        continue
-                    href = link['href']
-                    # Valid link conditions
-                    if ('/wiki/' in href and ':' not in href and 'Main_Page' not in href):
-                        first_valid_link = link
-                        break
-                if first_valid_link:
-                    break
+            main = content.find("div", class_="mw-parser-output")
+            if not main:
+                print("It leads to a dead end !")
+                return
+
+            first_valid_link = find_first_valid_link(main)
 
             if not first_valid_link:
                 print("It leads to a dead end !")
                 return
-            # print(f"{title} -> {first_valid_link['href']}")
-            next_url = normalize_href(base_url, first_valid_link['href'])
+        
+            next_url = normalize_href(first_valid_link['href'])
             if not next_url:
                 print("It leads to a dead end !")
                 return
