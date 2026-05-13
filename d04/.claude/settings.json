@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(ls /home/abey/42/Pisc-python/)",
-      "Read(//home/abey/42/Pisc-python/**)"
+      "Read(//home/abey/42/Pisc-python/**)",
+      "Bash(mv /home/abey/42/Pisc-python/d04/ex00/d04/ex00 /tmp/ex00_app)",
+      "Bash(mv /tmp/ex00_app /home/abey/42/Pisc-python/d04/ex00)",
+      "Read(//tmp/**)",
+      "Bash(git -C /home/abey/42/Pisc-python show HEAD:d04/ex00/my_script.sh)"
     ]
   }
 }

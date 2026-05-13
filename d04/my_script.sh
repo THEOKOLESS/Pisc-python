@@ -20,4 +20,3 @@ echo "Type 'deactivate' to exit the virtual environment or 'exit' to quit."
 _rc=$(mktemp)
 echo ". \"$HOME/.bashrc\" 2>/dev/null; . \"$(pwd)/django_venv/bin/activate\"; rm -f \"$_rc\"" > "$_rc"
 exec bash --rcfile "$_rc"
-
