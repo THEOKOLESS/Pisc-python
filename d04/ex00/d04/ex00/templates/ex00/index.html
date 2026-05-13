@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex00 : Markdown Cheatsheet.</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
+        h1 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+        h2 { border-bottom: 1px solid #ccc; margin-top: 40px; }
+        pre { background: #f4f4f4; padding: 12px; border-radius: 4px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        pre code { background: none; padding: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #f0f0f0; }
+        .example { display: flex; gap: 20px; }
+        .example div { flex: 1; }
+        .label { font-size: 0.8em; color: #666; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+        hr { border: none; border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Ex00 : Markdown Cheatsheet.</h1>
+
+<!-- HEADINGS -->
+<h2>Headings</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code># Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <h1 style="font-size:1.4em;margin:0">Heading 1</h1>
+        <h2 style="font-size:1.2em;margin:4px 0;border:none">Heading 2</h2>
+        <h3 style="font-size:1.1em;margin:4px 0">Heading 3</h3>
+        <h4 style="font-size:1em;margin:4px 0">Heading 4</h4>
+        <h5 style="font-size:0.9em;margin:4px 0">Heading 5</h5>
+        <h6 style="font-size:0.85em;margin:4px 0">Heading 6</h6>
+    </div>
+</div>
+
+<!-- EMPHASIS -->
+<h2>Emphasis</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>**bold text**
+*italic text*
+***bold and italic***
+~~strikethrough~~</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p><strong>bold text</strong></p>
+        <p><em>italic text</em></p>
+        <p><strong><em>bold and italic</em></strong></p>
+        <p><s>strikethrough</s></p>
+    </div>
+</div>
+
+<!-- LISTS -->
+<h2>Lists</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown — Unordered</div>
+        <pre><code>- Item 1
+- Item 2
+  - Nested item
+  - Nested item
+- Item 3</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2
+                <ul>
+                    <li>Nested item</li>
+                    <li>Nested item</li>
+                </ul>
+            </li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+</div>
+<div class="example">
+    <div>
+        <div class="label">Markdown — Ordered</div>
+        <pre><code>1. First
+2. Second
+3. Third</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <ol>
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+        </ol>
+    </div>
+</div>
+
+<!-- LINKS -->
+<h2>Links</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>[Link text](https://example.com)
+[Link with title](https://example.com "My title")</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p><a href="https://example.com">Link text</a></p>
+        <p><a href="https://example.com" title="My title">Link with title</a></p>
+    </div>
+</div>
+
+<!-- IMAGES -->
+<h2>Images</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>![Alt text](image.png)
+![Alt text](image.png "Optional title")</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p><code>&lt;img&gt;</code> tag with alt text and optional title</p>
+    </div>
+</div>
+
+<!-- CODE -->
+<h2>Code</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown — Inline</div>
+        <pre><code>`inline code`</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p><code>inline code</code></p>
+    </div>
+</div>
+<div class="example">
+    <div>
+        <div class="label">Markdown — Block</div>
+        <pre><code>```python
+def hello():
+    print("Hello, world!")
+```</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <pre><code>def hello():
+    print("Hello, world!")</code></pre>
+    </div>
+</div>
+
+<!-- BLOCKQUOTES -->
+<h2>Blockquotes</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>&gt; This is a blockquote.
+&gt; It can span multiple lines.
+&gt;
+&gt; &gt; Nested blockquote.</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <blockquote>
+            <p>This is a blockquote.<br>It can span multiple lines.</p>
+            <blockquote><p>Nested blockquote.</p></blockquote>
+        </blockquote>
+    </div>
+</div>
+
+<!-- HORIZONTAL RULE -->
+<h2>Horizontal Rule</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>---
+***
+___</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <hr>
+    </div>
+</div>
+
+<!-- TABLES -->
+<h2>Tables</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>| Header 1 | Header 2 | Header 3 |
+|----------|:--------:|---------:|
+| Left     | Center   | Right    |
+| cell     | cell     | cell     |</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <table>
+            <thead>
+                <tr><th>Header 1</th><th style="text-align:center">Header 2</th><th style="text-align:right">Header 3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Left</td><td style="text-align:center">Center</td><td style="text-align:right">Right</td></tr>
+                <tr><td>cell</td><td style="text-align:center">cell</td><td style="text-align:right">cell</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- TASK LISTS -->
+<h2>Task Lists</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>- [x] Done task
+- [ ] Pending task
+- [ ] Another task</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <ul style="list-style:none;padding-left:0">
+            <li><input type="checkbox" checked disabled> Done task</li>
+            <li><input type="checkbox" disabled> Pending task</li>
+            <li><input type="checkbox" disabled> Another task</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ESCAPING -->
+<h2>Escaping Characters</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>\*not italic\*
+\# not a heading
+\[not a link\]</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p>*not italic*</p>
+        <p># not a heading</p>
+        <p>[not a link]</p>
+    </div>
+</div>
+
+<!-- LINE BREAKS -->
+<h2>Line Breaks &amp; Paragraphs</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>First paragraph.
+
+Second paragraph.
+
+Line with two spaces
+then a line break.</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p>First paragraph.</p>
+        <p>Second paragraph.</p>
+        <p>Line with two spaces<br>then a line break.</p>
+    </div>
+</div>
+
+<!-- FOOTNOTES -->
+<h2>Footnotes</h2>
+<div class="example">
+    <div>
+        <div class="label">Markdown</div>
+        <pre><code>Some text[^1] with a footnote.
+
+[^1]: This is the footnote.</code></pre>
+    </div>
+    <div>
+        <div class="label">Result</div>
+        <p>Some text<sup>[1]</sup> with a footnote.</p>
+        <p><small>[1]: This is the footnote.</small></p>
+    </div>
+</div>
+
+</body>
+</html>

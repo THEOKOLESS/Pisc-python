@@ -11,7 +11,7 @@ fi
 . django_venv/bin/activate
 
 # Install requirements
-pip install -r requirement.txt || { echo "Error: failed to install requirements."; exit 1; }
+pip install -r requirements.txt || { echo "Error: failed to install requirements."; exit 1; }
 
 echo "Virtual environment 'django_venv' created and activated."
 echo "Type 'deactivate' to exit the virtual environment or 'exit' to quit."

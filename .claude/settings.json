@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dpkg -l)",
+      "Bash(pip3 --version)",
+      "Bash(pip --version)",
+      "Bash(apt-cache show *)",
+      "Bash(python3 -m venv --without-pip /tmp/test_venv)",
+      "Bash(ls /tmp/test_venv/bin/ 2>&1)",
+      "Read(//tmp/test_venv/bin/**)"
+    ]
+  }
+}

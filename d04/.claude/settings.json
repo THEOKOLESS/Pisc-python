@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /home/abey/42/Pisc-python/)",
+      "Read(//home/abey/42/Pisc-python/**)"
+    ]
+  }
+}
