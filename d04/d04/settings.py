@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ex00',
+    'ex01',
+    'ex02',
+    'ex03',
 ]
 
 MIDDLEWARE = [
@@ -116,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+LOG_FILE = BASE_DIR / 'ex02' / 'logs.txt'

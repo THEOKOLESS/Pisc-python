@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Ex01 : Processus d'affichage d'une page statique.{% endblock %}
+
+{% block content %}
+<h1>Ex01 : Processus d'affichage d'une page statique.</h1>
+
+<h2>Vue d'ensemble</h2>
+<p>
+    Lorsqu'un utilisateur accède à une URL dans un projet Django, une série d'étapes
+    précises se déroule, de la réception de la requête HTTP jusqu'à l'envoi de la
+    réponse HTML au navigateur.
+</p>
+
+<h2>1. La requête HTTP arrive</h2>
+<p>
+    Le navigateur envoie une requête HTTP GET vers le serveur Django
+    (ex : <code>GET /ex01/affichage</code>). Le serveur de développement
+    (<code>manage.py runserver</code>) reçoit cette requête et la transmet à Django.
+</p>
+
+<h2>2. Résolution de l'URL</h2>
+<p>
+    Django consulte le fichier <code>urls.py</code> du projet (<code>ROOT_URLCONF</code>),
+    qui redirige vers le <code>urls.py</code> de l'application concernée.
+    Django parcourt les patterns URL jusqu'à trouver celui qui correspond au chemin demandé
+    et identifie la <strong>vue</strong> associée.
+</p>
+
+<h2>3. Appel de la vue</h2>
+<p>
+    Django appelle la fonction de vue correspondante en lui passant l'objet
+    <code>HttpRequest</code>. La vue contient la logique applicative : elle peut
+    récupérer des données, effectuer des calculs, etc. Dans le cas d'une page statique,
+    elle se contente d'appeler <code>render()</code>.
+</p>
+
+<h2>4. Chargement et rendu du template</h2>
+<p>
+    La fonction <code>render(request, 'template.html')</code> demande au moteur de
+    templates Django de localiser le fichier HTML correspondant (dans les dossiers
+    <code>templates/</code> des apps installées), puis de le <strong>rendre</strong> :
+    les balises Django (<code>&#123;% block %&#125;</code>, <code>&#123;% include %&#125;</code>, variables)
+    sont interprétées et remplacées par leur valeur finale.
+</p>
+
+<h2>5. La réponse HTTP</h2>
+<p>
+    Django encapsule le HTML généré dans un objet <code>HttpResponse</code> avec le
+    code de statut <code>200 OK</code> et le renvoie au navigateur, qui l'affiche
+    à l'utilisateur.
+</p>
+
+<h2>Schéma résumé</h2>
+<pre>
+Navigateur
+   │  GET /ex01/affichage
+   ▼
+Django (urls.py)
+   │  pattern trouvé → vue affichage()
+   ▼
+Vue (views.py)
+   │  render(request, 'ex01/affichage.html')
+   ▼
+Moteur de templates
+   │  rendu HTML final
+   ▼
+HttpResponse (200 OK)
+   │
+   ▼
+Navigateur affiche la page
+</pre>
+
+{% endblock %}

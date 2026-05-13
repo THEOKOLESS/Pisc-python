@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Ex01 : Django, framework web.{% endblock %}
+
+{% block style %}{{ block.super }}
+<style>
+    .timeline { border-left: 3px solid #092e20; padding-left: 20px; margin: 24px 0; }
+    .timeline-item { margin-bottom: 16px; }
+    .timeline-item .year { font-weight: bold; }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Ex01 : Django, framework web.</h1>
+
+<h2>Qu'est-ce que Django ?</h2>
+<p>
+    Django est un framework web open-source écrit en Python. Son objectif principal est de
+    faciliter et d'accélérer le développement d'applications web en fournissant une structure
+    solide, des composants réutilisables et de nombreuses fonctionnalités intégrées : gestion
+    des URL, système de templates, ORM (Object-Relational Mapping), authentification,
+    interface d'administration, etc.
+</p>
+<p>
+    Django suit le principe <strong>DRY</strong> (<em>Don't Repeat Yourself</em>) et adopte
+    une architecture <strong>MVT</strong> (Model - View - Template), variante du célèbre
+    patron MVC.
+</p>
+
+<h2>Historique</h2>
+<div class="timeline">
+    <div class="timeline-item">
+        <span class="year">2003</span> — Django est créé par Adrian Holovaty et Simon
+        Willison au sein du journal <em>Lawrence Journal-World</em> (Kansas, États-Unis),
+        pour répondre aux besoins de publication web à grande cadence du journal.
+    </div>
+    <div class="timeline-item">
+        <span class="year">2005</span> — Django est publié en open-source sous licence
+        BSD. Le nom est un hommage au guitariste de jazz Django Reinhardt.
+    </div>
+    <div class="timeline-item">
+        <span class="year">2008</span> — Création de la <strong>Django Software Foundation</strong>
+        (DSF), organisation à but non lucratif chargée de soutenir le développement du framework.
+    </div>
+    <div class="timeline-item">
+        <span class="year">2013</span> — Django 1.5 introduit le support expérimental de Python 3.
+    </div>
+    <div class="timeline-item">
+        <span class="year">2017</span> — Django 2.0 abandonne Python 2 et devient exclusivement Python 3.
+    </div>
+    <div class="timeline-item">
+        <span class="year">2019</span> — Django 3.0 introduit le support de l'<strong>ASGI</strong>,
+        ouvrant la voie aux fonctionnalités asynchrones.
+    </div>
+    <div class="timeline-item">
+        <span class="year">Aujourd'hui</span> — Django est l'un des frameworks web Python
+        les plus populaires, utilisé par Instagram, Pinterest, Mozilla ou encore Disqus.
+    </div>
+</div>
+{% endblock %}
