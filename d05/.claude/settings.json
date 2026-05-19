@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import psycopg2; print\\('OK', psycopg2.__version__\\)\")",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 -m pip install psycopg2-binary)",
+      "Bash(/home/abey/42/Pisc-python/d05/django_venv/bin/python3 -c \"import psycopg2; print\\('OK'\\)\")"
+    ]
+  }
+}
