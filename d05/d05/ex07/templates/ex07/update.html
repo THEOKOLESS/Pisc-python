@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>ex07 update</title></head>
+<body>
+<form method="post">
+  {% csrf_token %}
+  <select name="title">
+    {% for movie in movies %}
+    <option value="{{ movie.title }}">{{ movie.title }}</option>
+    {% endfor %}
+  </select>
+  <input type="text" name="opening_crawl">
+  <input type="submit" value="update">
+</form>
+</body>
+</html>
