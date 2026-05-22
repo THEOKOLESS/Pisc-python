@@ -11,11 +11,11 @@ def display(request):
         if not people.exists():
             return HttpResponse(
                 "No data available, please use the following command line before use:<br>"
-                "python manage.py loaddata ex09/ex09_initial_data.json"
+                "python3 manage.py appenddata ex09/ex09_initial_data.json"
             )
         return render(request, 'ex09/display.html', {'people': people})
     except Exception:
         return HttpResponse(
             "No data available, please use the following command line before use:<br>"
-            "python manage.py loaddata ex09/ex09_initial_data.json"
+            "python3 manage.py appenddata ex09/ex09_initial_data.json"
         )

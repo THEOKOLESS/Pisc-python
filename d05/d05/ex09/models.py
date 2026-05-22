@@ -27,6 +27,7 @@ class People(models.Model):
     mass = models.FloatField(null=True, blank=True)
     homeworld = models.ForeignKey(
         Planets,
+        to_field='name',
         on_delete=models.SET_NULL,
         null=True,
         blank=True
