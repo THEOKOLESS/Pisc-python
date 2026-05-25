@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head><title>ex10</title></head>
+<body>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Movies minimum release date : <input type="date" name="min_date" required></label><br>
+  <label>Movies maximum release date : <input type="date" name="max_date" required></label><br>
+  <label>Planet diameter greater than : <input type="number" name="min_diameter" required></label><br>
+  <label>Character gender :
+    <select name="gender">
+      {% for gender in genders %}
+      <option value="{{ gender }}">{{ gender }}</option>
+      {% endfor %}
+    </select>
+  </label><br>
+  <input type="submit" value="Search">
+</form>
+
+{% if results is not None %}
+  {% if results %}
+    <table border="1">
+      <tr>
+        <th>Movie</th>
+        <th>Character</th>
+        <th>Gender</th>
+        <th>Homeworld</th>
+        <th>Diameter</th>
+      </tr>
+      {% for r in results %}
+      <tr>
+        <td>{{ r.movies__title }}</td>
+        <td>{{ r.name }}</td>
+        <td>{{ r.gender }}</td>
+        <td>{{ r.homeworld__name }}</td>
+        <td>{{ r.homeworld__diameter }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>Nothing corresponding to your research</p>
+  {% endif %}
+{% endif %}
+
+</body>
+</html>
