@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>d06</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'welcome' %}">d06</a>
+        {% if user.is_authenticated %}
+            Hello {{ user.username }}!
+            <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+            Hello {{ anon_username }}!
+            <a href="{% url 'register' %}">Inscription</a>
+            <a href="{% url 'login' %}">Connexion</a>
+        {% endif %}
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
