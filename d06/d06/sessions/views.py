@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.conf import settings
 from django.utils import timezone
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, TipForm
+from .models import Tip
 
 
 def welcome(request):
@@ -14,8 +15,20 @@ def welcome(request):
         request.session['username'] = random.choice(settings.USERNAMES)
         request.session['username_expires_at'] = now + settings.USERNAME_DURATION
 
+    form = None
+    if request.user.is_authenticated:
+        form = TipForm(request.POST or None)
+        if request.method == 'POST' and form.is_valid():
+            tip = form.save(commit=False)
+            tip.author = request.user
+            tip.save()
+            return redirect('welcome')
+
+    tips = Tip.objects.select_related('author').all()
     return render(request, 'welcome/welcome.html', {
         'anon_username': request.session['username'],
+        'form': form,
+        'tips': tips,
     })
 
 

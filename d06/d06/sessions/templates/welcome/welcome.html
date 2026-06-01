@@ -2,4 +2,27 @@
 
 {% block content %}
 
+{% if form %}
+<h2>Partager une astuce</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publier</button>
+</form>
+{% endif %}
+
+<h2>Astuces</h2>
+{% if tips %}
+<ul>
+    {% for tip in tips %}
+    <li>
+        <strong>{{ tip.author.username }}</strong> — {{ tip.date }}<br>
+        {{ tip.content }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Aucune astuce pour l'instant.</p>
+{% endif %}
+
 {% endblock %}
