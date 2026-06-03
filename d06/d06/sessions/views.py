@@ -1,5 +1,5 @@
 import random
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.conf import settings
 from django.utils import timezone
@@ -69,4 +69,44 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    return redirect('welcome')
+
+
+def upvote_tip(request, tip_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
+        tip = get_object_or_404(Tip, pk=tip_id)
+        user = request.user
+        if tip.upvotes.filter(pk=user.pk).exists():
+            tip.upvotes.remove(user)
+        else:
+            tip.downvotes.remove(user)
+            tip.upvotes.add(user)
+    return redirect('welcome')
+
+
+def downvote_tip(request, tip_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
+        tip = get_object_or_404(Tip, pk=tip_id)
+        user = request.user
+        if tip.author != user and not user.has_perm('ex_sessions.can_downvote'):
+            return redirect('welcome')
+        if tip.downvotes.filter(pk=user.pk).exists():
+            tip.downvotes.remove(user)
+        else:
+            tip.upvotes.remove(user)
+            tip.downvotes.add(user)
+    return redirect('welcome')
+
+
+def delete_tip(request, tip_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
+        tip = get_object_or_404(Tip, pk=tip_id)
+        if tip.author == request.user or request.user.has_perm('ex_sessions.delete_tip'):
+            tip.delete()
     return redirect('welcome')

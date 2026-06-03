@@ -17,7 +17,29 @@
     {% for tip in tips %}
     <li>
         <strong>{{ tip.author.username }}</strong> — {{ tip.date }}<br>
-        {{ tip.content }}
+        {{ tip.content }}<br>
+
+        <span>Upvotes : {{ tip.upvotes.count }}</span>
+        <span>Downvotes : {{ tip.downvotes.count }}</span>
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'upvote_tip' tip.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">&#9650; Upvote</button>
+        </form>
+        {% if tip.author == user or perms.ex_sessions.can_downvote %}
+        <form method="post" action="{% url 'downvote_tip' tip.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">&#9660; Downvote</button>
+        </form>
+        {% endif %}
+        {% if tip.author == user or perms.ex_sessions.delete_tip %}
+        <form method="post" action="{% url 'delete_tip' tip.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Supprimer</button>
+        </form>
+        {% endif %}
+        {% endif %}
     </li>
     {% endfor %}
 </ul>

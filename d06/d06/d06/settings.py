@@ -122,6 +122,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'ex_sessions.User'
+
 USERNAMES = [
     'Robaozi', 'Jiii', 'Wo de hao chi Hanbaobao', 'Wo de xiao ji ju xie', 'Yang',
     'Kai-Lin', 'Grace', 'Heidi', 'Ivan', 'Judy',
