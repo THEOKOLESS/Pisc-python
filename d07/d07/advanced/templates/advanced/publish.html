@@ -1,0 +1,12 @@
+{% extends "advanced/base.html" %}
+
+{% block title %}Publish an Article{% endblock %}
+
+{% block content %}
+    <h1>Publish an Article</h1>
+    <form method="post" action="{% url 'publish' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Publish</button>
+    </form>
+{% endblock %}

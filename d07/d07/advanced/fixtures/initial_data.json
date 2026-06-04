@@ -1,0 +1,138 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "jobaozi",
+      "password": "pbkdf2_sha256$1000000$Z566mvd60uz43RaFkmsruS$C+1UZrjWH0hb1chjP9lstetQUE5KkzYDVhpdng5ihwc=",
+      "email": "jobaozi@example.com",
+      "first_name": "Jobaozi",
+      "last_name": "Smith",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "date_joined": "2025-01-01T00:00:00Z",
+      "last_login": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "abey",
+      "password": "pbkdf2_sha256$1000000$Z566mvd60uz43RaFkmsruS$C+1UZrjWH0hb1chjP9lstetQUE5KkzYDVhpdng5ihwc=",
+      "email": "abey@example.com",
+      "first_name": "Abey",
+      "last_name": "Williams",
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": true,
+      "date_joined": "2025-01-01T00:00:00Z",
+      "last_login": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "jiiiiii",
+      "password": "pbkdf2_sha256$1000000$Z566mvd60uz43RaFkmsruS$C+1UZrjWH0hb1chjP9lstetQUE5KkzYDVhpdng5ihwc=",
+      "email": "jiiiiii@example.com",
+      "first_name": "Jiiiiii",
+      "last_name": "Brown",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "date_joined": "2025-01-01T00:00:00Z",
+      "last_login": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 1,
+    "fields": {
+      "title": "Lorem Ipsum: A Classic",
+      "author": 1,
+      "created": "2025-02-01T10:00:00Z",
+      "synopsis": "An introduction to the famous lorem ipsum placeholder text used by designers worldwide.",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 2,
+    "fields": {
+      "title": "The Art of Consectetur",
+      "author": 1,
+      "created": "2025-02-10T14:00:00Z",
+      "synopsis": "A deep dive into the lesser-known passages of lorem ipsum and their philosophical implications.",
+      "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 3,
+    "fields": {
+      "title": "Adipiscing Elit Explained",
+      "author": 2,
+      "created": "2025-03-05T09:30:00Z",
+      "synopsis": "Breaking down the etymology and historical context of the adipiscing elit phrase.",
+      "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 4,
+    "fields": {
+      "title": "Nemo Enim Ipsam Voluptatem",
+      "author": 2,
+      "created": "2025-03-15T16:45:00Z",
+      "synopsis": "Why no one pursues pleasure itself and the modern relevance of ancient Latin wisdom.",
+      "content": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 5,
+    "fields": {
+      "title": "Ut Labore et Dolore",
+      "author": 3,
+      "created": "2025-04-01T11:00:00Z",
+      "synopsis": "An exploration of labor and sorrow in classical literature and their parallels in modern society.",
+      "content": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."
+    }
+  },
+  {
+    "model": "advanced.article",
+    "pk": 6,
+    "fields": {
+      "title": "Quis Autem Vel Eum",
+      "author": 3,
+      "created": "2025-04-20T08:15:00Z",
+      "synopsis": "Who among us would condemn a man who chooses to enjoy pleasure that has no consequences?",
+      "content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Nam libero tempore cum soluta nobis est eligendi optio."
+    }
+  },
+  {
+    "model": "advanced.userfavoritearticle",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "article": 3
+    }
+  },
+  {
+    "model": "advanced.userfavoritearticle",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "article": 5
+    }
+  }
+]

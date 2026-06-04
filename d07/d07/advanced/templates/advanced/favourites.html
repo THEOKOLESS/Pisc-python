@@ -1,0 +1,14 @@
+{% extends "advanced/base.html" %}
+
+{% block title %}My Favourites{% endblock %}
+
+{% block content %}
+    <h1>My Favourites</h1>
+    <ul>
+        {% for fav in favourites %}
+        <li><a href="{% url 'detail' fav.article.pk %}">{{ fav.article.title }}</a></li>
+        {% empty %}
+        <li>No favourites yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
