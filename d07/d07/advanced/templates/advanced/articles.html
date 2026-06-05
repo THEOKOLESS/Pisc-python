@@ -1,30 +1,36 @@
 {% extends "advanced/base.html" %}
+{% load i18n %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}{% trans "Articles" %}{% endblock %}
+
+{% block page_header %}
+    <h1>{% trans "Articles" %} <small>{% trans "Share your writings" %}</small></h1>
+{% endblock %}
 
 {% block content %}
-    <h1>Articles</h1>
-    <table border="1">
+    <table class="table">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Created</th>
-                <th>Synopsis</th>
-                <th>Published</th>
+                <th>{% trans "Title" %}</th>
+                <th>{% trans "Synopsis" %}</th>
+                <th>{% trans "Writer" %}</th>
+                <th>{% trans "Created" %}</th>
+                <th>{% trans "When" %}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for article in articles %}
             <tr>
-                <td><a href="{% url 'detail' article.pk %}">{{ article.title }}</a></td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.synopsis|truncatechars:50 }}</td>
                 <td>{{ article.author }}</td>
                 <td>{{ article.created }}</td>
-                <td>{{ article.synopsis|truncatechars:20 }}</td>
-                <td>{{ article.created|timesince }} ago</td>
+                <td>{{ article.created|timesince }} {% trans "ago" %}</td>
+                <td><a href="{% url 'detail' article.pk %}" class="btn btn-info btn-sm">{% trans "Read" %}</a></td>
             </tr>
             {% empty %}
-            <tr><td colspan="5">No articles yet.</td></tr>
+            <tr><td colspan="6">{% trans "No articles yet." %}</td></tr>
             {% endfor %}
         </tbody>
     </table>

@@ -1,0 +1,69 @@
+# French translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+
+msgid "Articles"
+msgstr "Articles"
+
+msgid "Share your writings"
+msgstr "Partagez vos écrits"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Synopsis"
+msgstr "Synopsis"
+
+msgid "Writer"
+msgstr "Auteur"
+
+msgid "Created"
+msgstr "Créé"
+
+msgid "When"
+msgstr "Quand"
+
+msgid "Read"
+msgstr "Lire"
+
+msgid "No articles yet."
+msgstr "Pas encore d'articles."
+
+msgid "ago"
+msgstr "il y a"
+
+msgid "Favourites"
+msgstr "Favoris"
+
+msgid "Publications"
+msgstr "Publications"
+
+msgid "Register"
+msgstr "S'inscrire"
+
+msgid "Logged as %(username)s"
+msgstr "Connecté en tant que %(username)s"
+
+msgid "Logout"
+msgstr "Déconnexion"
+
+msgid "Login"
+msgstr "Connexion"
+
+msgid "username"
+msgstr "nom d'utilisateur"
+
+msgid "password"
+msgstr "mot de passe"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Add to Favourites"
+msgstr "Ajouter aux favoris"
+
+msgid "Back to Articles"
+msgstr "Retour aux articles"

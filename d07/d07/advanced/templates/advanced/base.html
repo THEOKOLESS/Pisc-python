@@ -1,31 +1,65 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Articles Site{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{% url 'articles' %}">Last Articles</a> |
-        {% if user.is_authenticated %}
-            <a href="{% url 'favourites' %}">Favourites</a> |
-            <a href="{% url 'publications' %}">Publications</a> |
-            Logged as {{ user.username }} |
-            <form method="post" action="{% url 'logout' %}" style="display:inline">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        {% else %}
-            <a href="{% url 'register' %}">Register</a> |
-            <form method="post" action="{% url 'login' %}" style="display:inline">
-                {% csrf_token %}
-                {{ nav_login_form.username }} {{ nav_login_form.password }}
-                <button type="submit">Login</button>
-            </form>
-        {% endif %}
+    <div class="container">
+        <div class="text-right">
+            <a href="{{ other_lang_url }}">{{ other_lang_label }}</a>
+        </div>
+        {% block page_header %}{% endblock %}
+    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <i class="glyphicon glyphicon-book" style="color: #aaa"></i>
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="{% if request.resolver_match.url_name == 'articles' %}active{% endif %}">
+                    <a href="{% url 'articles' %}">{% trans "Articles" %}</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="{% if request.resolver_match.url_name == 'favourites' %}active{% endif %}">
+                    <a href="{% url 'favourites' %}">{% trans "Favourites" %}</a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'publications' %}active{% endif %}">
+                    <a href="{% url 'publications' %}">{% trans "Publications" %}</a>
+                </li>
+                {% else %}
+                <li class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">
+                    <a href="{% url 'register' %}">{% trans "Register" %}</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="btn btn-link navbar-link" style="padding: 14px" href="#">{% blocktrans with username=user.username %}Logged as {{ username }}{% endblocktrans %}</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link navbar-link" style="padding: 14px">{% trans "Logout" %}</button>
+                        </form>
+                    </li>
+                </ul>
+            {% else %}
+                <form method="post" action="{% url 'login' %}" class="navbar-form navbar-right">
+                    {% csrf_token %}
+                    <div class="form-group">{{ nav_login_form.username }}</div>
+                    <div class="form-group">{{ nav_login_form.password }}</div>
+                    <button type="submit" class="btn btn-default">{% trans "Login" %}</button>
+                </form>
+            {% endif %}
+        </div>
     </nav>
-    <hr>
-    {% block content %}{% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

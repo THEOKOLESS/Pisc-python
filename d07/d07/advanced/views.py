@@ -48,6 +48,11 @@ class RegisterView(CreateView):
     template_name = 'advanced/register.html'
     success_url = reverse_lazy('login')
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy('home'))
+        return super().dispatch(request, *args, **kwargs)
+
 
 class PublishView(LoginRequiredMixin, CreateView):
     model = Article
@@ -71,7 +76,12 @@ class AddToFavouriteView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.article_id = self.kwargs['pk']
+        if UserFavoriteArticle.objects.filter(user=self.request.user, article_id=self.kwargs['pk']).exists():
+            return redirect(self.get_success_url())
         return super().form_valid(form)
+    
+ 
+    
 
     def get_success_url(self):
         return reverse('detail', kwargs={'pk': self.kwargs['pk']})
