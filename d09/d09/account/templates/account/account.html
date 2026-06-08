@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5" style="max-width: 420px;">
+
+    <!-- Logged-in state -->
+    <div id="logged-in-section" {% if not user.is_authenticated %}style="display:none;"{% endif %}>
+        <p class="lead">Logged as <strong id="username-display">{{ user.username }}</strong></p>
+        <button id="logout-btn" class="btn btn-danger">Logout</button>
+    </div>
+
+    <!-- Login form state -->
+    <div id="login-section" {% if user.is_authenticated %}style="display:none;"{% endif %}>
+        <h2 class="mb-4">Login</h2>
+        <div id="error-container"></div>
+        <form id="login-form" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function () {
+    function getCsrf() {
+        var match = document.cookie.match(/csrftoken=([^;]+)/);
+        return match ? match[1] : '';
+    }
+
+    $('#login-form').on('submit', function (e) {
+        e.preventDefault();
+        $('#error-container').empty();
+
+        $.ajax({
+            url: '/account/login/',
+            method: 'POST',
+            data: {
+                csrfmiddlewaretoken: getCsrf(),
+                username: $('#id_username').val(),
+                password: $('#id_password').val(),
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#username-display').text(data.username);
+                    $('#login-section').hide();
+                    $('#logged-in-section').show();
+                } else {
+                    var html = '<div class="alert alert-danger"><ul class="mb-0">';
+                    $.each(data.errors, function (field, msgs) {
+                        $.each(msgs, function (i, msg) {
+                            html += '<li>' + msg + '</li>';
+                        });
+                    });
+                    html += '</ul></div>';
+                    $('#error-container').html(html);
+                }
+            }
+        });
+    });
+
+    $('#logout-btn').on('click', function () {
+        $.ajax({
+            url: '/account/logout/',
+            method: 'POST',
+            data: { csrfmiddlewaretoken: getCsrf() },
+            success: function (data) {
+                if (data.success) {
+                    $('#login-form')[0].reset();
+                    $('#logged-in-section').hide();
+                    $('#login-section').show();
+                }
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
