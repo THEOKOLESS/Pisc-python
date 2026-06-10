@@ -13,22 +13,40 @@
             padding: 12px;
             background: #f8f9fa;
         }
-        .msg-join { color: #6c757d; font-style: italic; text-align: center; font-size: .875rem; }
+        #users-list {
+            height: 450px;
+            overflow-y: auto;
+            border: 1px solid #b6d4fe;
+            border-radius: .375rem;
+            padding: 12px;
+            background: #e7f1ff;
+        }
+        .msg-system { color: #6c757d; font-style: italic; text-align: center; font-size: .875rem; }
     </style>
 </head>
 <body>
-<div class="container mt-4" style="max-width: 700px;">
+<div class="container mt-4" style="max-width: 900px;">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>{{ room.name }}</h2>
         <a href="/chat/" class="btn btn-sm btn-outline-secondary">← Rooms</a>
     </div>
-    <div id="messages" class="mb-3"></div>
-    <form id="message-form">
-        <div class="input-group">
-            <input type="text" id="message-input" class="form-control" placeholder="Type a message..." autocomplete="off">
-            <button type="submit" class="btn btn-primary">Send</button>
+    <div class="row">
+        <div class="col-8">
+            <div id="messages" class="mb-3"></div>
+            <form id="message-form">
+                <div class="input-group">
+                    <input type="text" id="message-input" class="form-control" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
         </div>
-    </form>
+        <div class="col-4">
+            <div id="users-list">
+                <h6 class="mb-2">Connected users</h6>
+                <ul id="users-ul" class="list-unstyled mb-0"></ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -37,11 +55,20 @@
 
     socket.onmessage = function (e) {
         const data = JSON.parse(e.data);
+
+        if (data.type === 'users') {
+            $('#users-ul').empty();
+            $.each(data.users, function (i, username) {
+                $('#users-ul').append($('<li></li>').text(username));
+            });
+            return;
+        }
+
         const $messages = $('#messages');
         let $el;
 
-        if (data.is_join) {
-            $el = $('<div class="msg-join my-1"></div>').text(data.message);
+        if (data.is_join || data.is_leave) {
+            $el = $('<div class="msg-system my-1"></div>').text(data.message);
         } else {
             $el = $('<div class="mb-1"></div>');
             $('<strong></strong>').text(data.username + ': ').appendTo($el);
