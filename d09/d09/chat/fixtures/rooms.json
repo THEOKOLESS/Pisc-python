@@ -1,0 +1,5 @@
+[
+    {"model": "chat.room", "pk": 1, "fields": {"name": "General"}},
+    {"model": "chat.room", "pk": 2, "fields": {"name": "Tech"}},
+    {"model": "chat.room", "pk": 3, "fields": {"name": "Random"}}
+]
