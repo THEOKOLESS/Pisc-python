@@ -32,8 +32,8 @@ msgstr "Lire"
 msgid "No articles yet."
 msgstr "Pas encore d'articles."
 
-msgid "ago"
-msgstr "il y a"
+msgid "%(time)s ago"
+msgstr "il y a %(time)s"
 
 msgid "Favourites"
 msgstr "Favoris"

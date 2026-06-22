@@ -23,10 +23,10 @@
             {% for article in articles %}
             <tr>
                 <td>{{ article.title }}</td>
-                <td>{{ article.synopsis|truncatechars:50 }}</td>
+                <td>{{ article.synopsis|truncatechars:20 }}</td>
                 <td>{{ article.author }}</td>
                 <td>{{ article.created }}</td>
-                <td>{{ article.created|timesince }} {% trans "ago" %}</td>
+                <td>{% blocktrans with time=article.created|timesince %}{{ time }} ago{% endblocktrans %}</td>
                 <td><a href="{% url 'detail' article.pk %}" class="btn btn-info btn-sm">{% trans "Read" %}</a></td>
             </tr>
             {% empty %}

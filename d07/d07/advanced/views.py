@@ -50,7 +50,7 @@ class RegisterView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(reverse_lazy('home'))
+            return redirect(reverse('home'))
         return super().dispatch(request, *args, **kwargs)
 
 
