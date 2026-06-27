@@ -25,7 +25,6 @@ class ArticleDetailView(DetailView):
 
 
 class PublicationsView(LoginRequiredMixin, ListView):
-    model = Article
     template_name = 'advanced/publications.html'
     context_object_name = 'articles'
 
@@ -34,7 +33,6 @@ class PublicationsView(LoginRequiredMixin, ListView):
 
 
 class FavouritesView(LoginRequiredMixin, ListView):
-    model = UserFavoriteArticle
     template_name = 'advanced/favourites.html'
     context_object_name = 'favourites'
 
